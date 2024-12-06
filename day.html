@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day Counter</title>
+    <style>
+      body {
+        margin: 0;
+        background-image: url("kotletka.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: azure;
+      }
+      .counter-container {
+        text-align: center;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 20px 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+      .day-counter {
+        font-size: 5rem;
+        font-weight: bold;
+        margin: 0;
+      }
+      .description {
+        font-size: 1.2rem;
+        margin: 10px 0 0;
+      }
+      .date {
+        font-size: 1rem;
+        color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="counter-container">
+      <div class="day-counter" id="dayCounter">Dzien 7</div>
+      <div class="description">Grania w bs na discord.gg/OgladajAnime</div>
+      <div class="date" id="currentDate"></div>
+    </div>
+
+    <script>
+      const startDate = new Date();
+      startDate.setDate(startDate.getDate() - 7);
+
+      function updateCounter() {
+        const today = new Date();
+        const diffTime = today - startDate;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        document.getElementById("dayCounter").textContent = `Day ${diffDays}`;
+
+        // Format the current date
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        document.getElementById("currentDate").textContent =
+          new Date().toLocaleDateString(undefined, options);
+      }
+
+      // Update counter on load
+      updateCounter();
+    </script>
+  </body>
+</html>
